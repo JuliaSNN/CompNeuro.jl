@@ -65,7 +65,7 @@ sg = SliderGrid(
     panel[1,1],
     (label = "V reset", range = -70:1:-40, format = "{:.1f}mV", startvalue = -55),
     (label = "b", range = 0:1:100, format = "{:.1f} nA", startvalue = 20),
-    (label = "a", range = 0:1:20, format = "{:.1f} nS", startvalue = 0),
+    (label = "a", range = 0:0.1:20, format = "{:.1f} nS", startvalue = 0),
     (label = "I_ext", range = 0:1:100, format = "{:.1f} nA", startvalue = 0),
     (label = "Impulse", range = 0:1:50, format = "{:.1f} nA", startvalue = 0),
     width = 350,
