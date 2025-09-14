@@ -52,10 +52,11 @@ end
 # solution = run_model(p, u0, adex!, (0, 300.0), u_range=-80:-40, w_range=-40:100, reset_cb=cb)
 
 ##
+
 @info "Rendering figure... "
 fig = Figure(size=(1200, 900))
 sl_x = Slider(fig[2,1][2, 1], range = -80:0.01:-40, startvalue = -60)
-sl_y = Slider(fig[2,1][1, 2], range = -40:0.01:50, horizontal = false, startvalue = 6)
+sl_y = Slider(fig[2,1][1, 2], range = -40:0.01:100, horizontal = false, startvalue = 6)
 ax1 = Axis(fig[1, 1], xlabel="Time", ylabel="Value", title="AdEx Neuron Model")
 ax2 = Axis(fig[2, 1][1,1], xlabel="u", ylabel="w", title="Phase plane",)
 panel = fig[2,1][1, 3]
@@ -94,7 +95,7 @@ sl_vr, sl_b, sl_a, sl_ext, sl_A = sg.sliders
     solution = run_model(p0, u0, adex!, (0, 300.0), u_range=-80:-40, w_range=-40:100, reset_cb=cb)
     fig = CompNeuro.plot_solution(solution, ax1, ax2)
 end
-fig
+display(fig)
 
 @info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
 

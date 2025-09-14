@@ -76,7 +76,7 @@ sl_ext, sl_b0, sl_b1, sl_A = sg.sliders
     solution = run_model(p0, u0, fitzhugh_nagumo!, (0, 300.0), u_range=u_range, w_range=w_range)
     fig = CompNeuro.plot_solution(solution, ax1, ax2)
 end
-fig
+display(fig)
 
 @info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
 
