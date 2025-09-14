@@ -31,6 +31,7 @@ p = (; I, g_Ca, g_K, g_L, V_Ca, V_K, V_L, V1, V2, V3, V4, ϕ= 0.04,
      t_impulse=20.0, ϵ=0, A=0.0, b=0)
 
 ##
+@info "Rendering figure... "
 u_range=-80.0:5.0:50.0
 w_range=-0.5:0.1:1.5
 
@@ -79,3 +80,10 @@ sl_ext, sl_b0, sl_b1, sl_A = sg.sliders
     fig = CompNeuro.plot_solution(solution, ax1, ax2)
 end
 fig
+
+@info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
+while true
+    sleep(10)
+    fig
+end
+##

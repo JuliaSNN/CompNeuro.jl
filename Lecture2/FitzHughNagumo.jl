@@ -28,6 +28,7 @@ u0 = [-2.0, -0.5]
 
 
 ##
+@info "Rendering figure... "
 u_range=-4:4
 w_range=-4:4
 
@@ -59,6 +60,7 @@ on(button.clicks) do n
     @show "Button state is:" button_state
 end
 
+
 sl_ext, sl_b0, sl_b1, sl_A = sg.sliders
 @lift begin 
     p0 = @update p begin
@@ -75,3 +77,11 @@ sl_ext, sl_b0, sl_b1, sl_A = sg.sliders
     fig = CompNeuro.plot_solution(solution, ax1, ax2)
 end
 fig
+
+@info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
+
+while true
+    sleep(10)
+    fig
+end
+##

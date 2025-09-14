@@ -52,6 +52,7 @@ end
 # solution = run_model(p, u0, adex!, (0, 300.0), u_range=-80:-40, w_range=-40:100, reset_cb=cb)
 
 ##
+@info "Rendering figure... "
 fig = Figure(size=(1200, 900))
 sl_x = Slider(fig[2,1][2, 1], range = -80:0.01:-40, startvalue = -60)
 sl_y = Slider(fig[2,1][1, 2], range = -40:0.01:50, horizontal = false, startvalue = 6)
@@ -94,28 +95,11 @@ sl_vr, sl_b, sl_a, sl_ext, sl_A = sg.sliders
     fig = CompNeuro.plot_solution(solution, ax1, ax2)
 end
 fig
-##
-using GLMakie
 
-fig = Figure()
+@info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
 
-ax = Axis(fig[1, 1])
-fig[2, 1] = buttongrid = GridLayout(tellwidth = false)
-
-counts = Observable([1, 4, 3, 7, 2])
-
-buttonlabels = [lift(x -> "Count: $(x[i])", counts) for i in 1:5]
-
-buttons = buttongrid[1, 1:5] = [Button(fig, label = l) for l in buttonlabels]
-
-for i in 1:5
-    on(buttons[i].clicks) do n
-        counts[][i] += 1
-        notify(counts)
-    end
+while true
+    sleep(10)
+    fig
 end
-
-barplot!(counts, color = cgrad(:Spectral)[LinRange(0, 1, 5)])
-ylims!(ax, 0, 20)
-
-fig
+##
