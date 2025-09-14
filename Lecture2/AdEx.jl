@@ -97,8 +97,8 @@ display(fig)
 
 @info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
 
-# while true
-#     sleep(10)
-#     fig
-# end
-##
+while true
+    sleep(10)
+    fig
+end
+#
