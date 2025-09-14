@@ -31,11 +31,13 @@ This will install all necessary packages for you to be able to run the scripts, 
 
 Later, you can close the Julia console and run.
 
+```
 julia Lecture2/FitzHughNagumo.jl
 julia Lecture2/MorrisLecar.jl
 julia Lecture2/AdEx.jl
+```
 
-It should work out of the box. 
+It should work out of the box... Drop me an issue otherwise ;)
 
 ## Changing the script
 
