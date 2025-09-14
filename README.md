@@ -7,6 +7,8 @@ A package for teaching Computational Neuroscience.
 The package offers:
 
 - Interactive tools to visualize the solution of 2D differential equations, implementing: FitzHugh Nagumo, Morris Lecar, and AdEx models.
+![alt text](assets/adex_example.png.png "AdEx 2D visualization")
+
 - Visualization of JuliaSNN simulations.
 
 
