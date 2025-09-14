@@ -1,5 +1,4 @@
 using Makie
-using GLMakie
 
 _backend = "GLMakie"
 @info "Using Makie backend for plotting"
@@ -33,7 +32,6 @@ function plot_solution(solution, ax1, ax2)
         for st in p.spike_times
             tt = argmin(abs.(sol.t .- st)) +1
             scatter!(ax2, [sol.u[tt][1]], [sol.u[tt][2]], markersize=22, color=:red, marker=:star5)
-            # vline!(p0, [st], lw=2, c=:black, label="")
         end
     end
 end

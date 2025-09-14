@@ -3,7 +3,6 @@ findproject(@__DIR__) |> quickactivate
 using Revise
 using Makie, GLMakie
 using CompNeuro
-import CompNeuro: plot_solution, @unpack, _backend
 
 ## AdEx model
 function adex!(du, u, p, t)
@@ -77,7 +76,6 @@ button = panel[2, 1] = Button(fig, label = "Current Impulse", buttoncolor = lift
 
 on(button.clicks) do n
     global button_state[] = !(button_state[])
-    @show "Button state is:" button_state
 end
 
 sl_vr, sl_b, sl_a, sl_ext, sl_A = sg.sliders
@@ -99,8 +97,8 @@ display(fig)
 
 @info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
 
-while true
-    sleep(10)
-    fig
-end
+# while true
+#     sleep(10)
+#     fig
+# end
 ##

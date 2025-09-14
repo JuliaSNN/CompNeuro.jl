@@ -57,7 +57,6 @@ button_color = :lightblue
 button = panel[2, 1] = Button(fig, label = "Current Impulse", buttoncolor = lift(x->x ? :red : :lightblue, button_state))
 on(button.clicks) do n
     global button_state[] = !(button_state[])
-    @show "Button state is:" button_state
 end
 
 
