@@ -63,10 +63,13 @@ panel = fig[2,1][1, 3]
 sg = SliderGrid(
     panel[1,1],
     (label = "V reset", range = -70:1:-40, format = "{:.1f}mV", startvalue = -55),
+    (label = "V Leak", range = -70:1:-50, format = "{:.1f}mV", startvalue = -65),
+    (label = "τ_w", range = 0:1:200, format = "{:.1f}ms", startvalue = 155),
     (label = "b", range = 0:1:100, format = "{:.1f} nA", startvalue = 20),
-    (label = "a", range = 0:0.1:20, format = "{:.1f} nS", startvalue = 0),
-    (label = "I_ext", range = 0:1:100, format = "{:.1f} nA", startvalue = 0),
-    (label = "Impulse", range = 0:1:50, format = "{:.1f} nA", startvalue = 0),
+    (label = "a", range = -5:0.1:20, format = "{:.1f} nS", startvalue = 0),
+    (label = "I_ext", range = 0:1:200, format = "{:.1f} nA", startvalue = 0),
+    (label = "A Impulse", range = 0:1:50, format = "{:.1f} nA", startvalue = 0),
+    (label = "T impulse", range = 0:1:250, format = "{:.1f} ms", startvalue = 0),
     width = 350,
     tellheight = false)
 
@@ -78,16 +81,18 @@ on(button.clicks) do n
     global button_state[] = !(button_state[])
 end
 
-sl_vr, sl_b, sl_a, sl_ext, sl_A = sg.sliders
+sl_vr, sl_vl, sl_tw, sl_b, sl_a, sl_ext, sl_Aimpulse, sl_Timpulse = sg.sliders
 @lift begin 
     p0 = @update p begin
         V_reset = $(sl_vr.value)
+        V_L = $(sl_vl.value)
+        τw = $(sl_tw.value)
         b = $(sl_b.value)
         a = $(sl_a.value)
-        A = $(sl_A.value)
+        A = $(sl_Aimpulse.value)
         I_ext = $(sl_ext.value)
         spike_times = Float64[]
-        t_impulse = $(button_state) ? 20.0 : -1.0
+        t_impulse = $(button_state) ? $(sl_Timpulse.value) : -1.0
     end
     u0  = [$(sl_x.value), $(sl_y.value)]
     solution = run_model(p0, u0, adex!, (0, 300.0), u_range=-80:-40, w_range=-40:100, reset_cb=cb)
@@ -97,6 +102,7 @@ display(fig)
 
 @info "Done rendering figure. Interact with sliders and button to change parameters. Use Ctrl+C to stop."
 
+##
 while true
     sleep(10)
     fig
